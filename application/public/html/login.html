@@ -1,20 +1,23 @@
 <!DOCTYPE html>
-<html lang = "en">
+<html lang="en">
+
 <head>
     <meta charset="UTF-8" />
     <title>Login</title>
+    <link rel="stylesheet" href="../css/style.css">
 </head>
+
 <body>
     <header>
-        <h1>CSC 317 Video App</h1>
+        <h1>PostPlay</h1>
     </header>
     <nav>
-        <ul>
+        <ul class="navLinks">
             <li>
                 <a href="Index.html">Home</a>
             </li>
             <li>
-                <a href="login.html">login</a>
+                <a href="login.html" class="active">Login</a>
             </li>
             <li>
                 <a href="registration.html">Register</a>
@@ -31,16 +34,29 @@
         <header>
             <h2>Login Form</h2>
         </header>
-        <form action="">
-            <label for="username">Username</label>
-            <input type="text" name="username" id="username">
-            
-            <label for="password">Password</label>
-            <input type="password" name="password" id="password">
+        <div class="container">
+            <form action="">
 
-            <button type="submit">Login</button>
-            <button type="reset">Clear</button>
-        </form>
+                <div class="form">
+                    <label for="username">Username</label>
+                </div>
+                <div class="login-text">
+                    <input type="text" name="username" id="username">
+                </div>
+
+                <div class="form">
+                    <label for="password">Password</label>
+                </div>
+                <div class="login-text">
+                    <input type="password" name="password" id="password">
+                </div>
+
+                <div class="form-wrapper">
+                    <button type="submit" class="btn">Login</button>
+                    <button type="reset">Clear</button>
+                </div>
+            </form>
+        </div>
     </main>
     <main>
         <footer>
@@ -48,4 +64,5 @@
         </footer>
     </main>
 </body>
+
 </html>

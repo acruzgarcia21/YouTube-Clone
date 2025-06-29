@@ -1,23 +1,26 @@
 <!DOCTYPE html>
-<html lang = "en">
+<html lang="en">
+
 <head>
     <meta charset="UTF-8" />
     <title>Registration</title>
+    <link rel="stylesheet" href="../css/style.css">
 </head>
+
 <body>
     <header>
-        <h1>CSC 317 Video App</h1>
+        <h1>PostPlay</h1>
     </header>
     <nav>
-        <ul>
+        <ul class="navLinks">
             <li>
                 <a href="Index.html">Home</a>
             </li>
             <li>
-                <a href="login.html">login</a>
+                <a href="login.html">Login</a>
             </li>
             <li>
-                <a href="registration.html">Register</a>
+                <a href="registration.html" class="active">Register</a>
             </li>
             <li>
                 <a href="postvideo.html">Post</a>
@@ -31,31 +34,67 @@
         <header>
             <h2>Sign up</h2>
         </header>
-        <form action="">
-            <label for="username">Username</label>
-            <input type="text" name="username" id="username">
+        <div class="container">
+            <form action="/action_page.php">
+                <div class="row">
+                    <div class="col25">
+                        <label for="username">Username</label>
+                    </div>
+                    <div class="col75">
+                        <input type="text" id="username" name="username" placeholder="Username..">
+                    </div>
+                </div>
 
-            <label for="email">Email</label>
-            <input type="text" name="" id="">
+                <div class="row">
+                    <div class="col25">
+                        <label for="email">Email</label>
+                    </div>
+                    <div class="col75">
+                        <input type="text" name="email" id="email" required placeholder="Email">
+                    </div>
+                </div>
 
-            <label for="password">Password</label>
-            <input type="password" name="password" id="password">
+                <div class="row">
+                    <div class="col25">
+                        <label for="password">Password</label>
+                    </div>
+                    <div class="col75">
+                        <input type="password" name="password" id="password" required placeholder="Password">
+                    </div>
+                </div>
 
-            <label for="password">Confirm Password</label>
-            <input type="password" name="password" id="password">
+                <div class="row">
+                    <div class="col25">
+                        <label for="cpassword">Confirm Password</label>
+                    </div>
+                    <div class="col75">
+                        <input type="password" name="cpassword" id="cpassword" required placeholder="Password">
+                    </div>
+                </div>
 
-            <label>Confirm You Are 13+</label>
-            <input type="checkbox">
+                <div class="form-wrapper">
+                    <div class="agreement-row">
+                        <label>Confirm You Are 13+</label>
+                        <input type="checkbox">
+                    </div>
 
-            <label>By Signing Up You Agree To Our </label>
-            <a href="TOS"> Terms Of Service And Privacy Policy</a>
-            <input type="checkbox">
+                    <div class="agreement-row">
+                        <label>By Signing Up You Agree To Our</label>
+                        <a href="TOS">Terms Of Service </a>
+                        <label>and</label>
+                        <a href="PrivacyPolicy"> Privacy Policy</a>
+                        <input type="checkbox">
+                    </div>
+                    <button class="btn" type="submit">Submit</button>
 
-            <button type="submit">Submit</button>
-        </form>
+                </div>
+
+            </form>
+        </div>
         <footer>
             Alejandro Cruz-Garcia &copy; 2025
         </footer>
     </main>
 </body>
+
 </html>
