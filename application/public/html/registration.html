@@ -3,8 +3,11 @@
 
 <head>
     <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Registration</title>
     <link rel="stylesheet" href="../css/style.css">
+    <script defer src="../js/r.js"></script>
+
 </head>
 
 <body>
@@ -34,62 +37,51 @@
         <header>
             <h2>Sign up</h2>
         </header>
-        <div class="container">
-            <form action="/action_page.php">
-                <div class="row">
-                    <div class="col25">
+        <div class="page-wrapper">
+            <div class="form-card">
+                <form id="reg-form">
+                    <div class="input-group">
                         <label for="username">Username</label>
+                        <input type="text" id="username" placeholder="Username*">
+                        <small id="username-error" class="error-message"></small>
                     </div>
-                    <div class="col75">
-                        <input type="text" id="username" name="username" placeholder="Username*">
-                    </div>
-                </div>
 
-                <div class="row">
-                    <div class="col25">
+                    <div class="input-group">
                         <label for="email">Email</label>
+                        <input type="email" name="email" id="email" required placeholder="Email*">
                     </div>
-                    <div class="col75">
-                        <input type="text" name="email" id="email" required placeholder="Email*">
-                    </div>
-                </div>
 
-                <div class="row">
-                    <div class="col25">
+                    <div class="input-group">
                         <label for="password">Password</label>
-                    </div>
-                    <div class="col75">
                         <input type="password" name="password" id="password" required placeholder="Password*">
+                        <small id="password-error" class="error-message"></small>
                     </div>
-                </div>
 
-                <div class="row">
-                    <div class="col25">
+                    <div class="input-group">
                         <label for="cpassword">Confirm Password</label>
-                    </div>
-                    <div class="col75">
                         <input type="password" name="cpassword" id="cpassword" required placeholder="Confirm Password*">
-                    </div>
-                </div>
-
-                <div class="form-wrapper">
-                    <div class="agreement-row">
-                        <label>Confirm You Are 13+</label>
-                        <input type="checkbox">
+                        <small id="cpassword-error" class="error-message"></small>
                     </div>
 
-                    <div class="agreement-row">
-                        <label>By Signing Up You Agree To Our</label>
-                        <a href="TOS">Terms Of Service </a>
-                        <label>and</label>
-                        <a href="PrivacyPolicy"> Privacy Policy</a>
-                        <input type="checkbox">
+                    <div class="agreement-section">
+                        <div class="agreement-row">
+                            <input type="checkbox" id="age-confirm" required>
+                            <label for="age-confirm">Confirm You Are 13+</label>
+                        </div>
+
+                        <div class="agreement-row">
+                            <input type="checkbox" id="tos-confirm" required>
+                            <label for="tos-confirm">
+                                By signing up, you agree to our
+                                <a href="TOS">Terms of Service</a> and
+                                <a href="PrivacyPolicy">Privacy Policy</a>
+                            </label>
+                        </div>
                     </div>
-                    <button class="btn" type="submit">Submit</button>
 
-                </div>
-
-            </form>
+                    <button id="submit" class="btn" type="submit">CREATE ACCOUNT</button>
+                </form>
+            </div>
         </div>
         <footer>
             Alejandro Cruz-Garcia &copy; 2025
