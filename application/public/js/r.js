@@ -92,6 +92,18 @@ if (cpasswordField) {
     cpasswordField.addEventListener('input', validateForm);
 }
 
+document.addEventListener('DOMContentLoaded', () => {
+    const showPasswordCheckbox = document.getElementById('show-password');
+    const passwordField = document.getElementById('password');
+    const confirmPasswordField = document.getElementById('cpassword');
+
+    showPasswordCheckbox.addEventListener('change', () => {
+        const type = showPasswordCheckbox.checked ? 'text' : 'password';
+        passwordField.type = type;
+        confirmPasswordField.type = type;
+    });
+});
+
 regForm.addEventListener('submit', function (e) {
     e.preventDefault();
     validateForm();
