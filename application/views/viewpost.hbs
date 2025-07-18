@@ -1,13 +1,10 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html lang = "en">
 <head>
     <meta charset="UTF-8" />
-    <title>Home</title>
+    <title>View Post</title>
     <link rel="stylesheet" href="../css/style.css">
-    <script defer src="../js/fetchapi.js"></script>
 </head>
-
 <body>
     <header>
         <h1>PostPlay</h1>
@@ -15,7 +12,7 @@
     <nav>
         <ul class="navLinks">
             <li>
-                <a href="Index.html" class="active">Home</a>
+                <a href="Index.html">Home</a>
             </li>
             <li>
                 <a href="login.html">Login</a>
@@ -27,24 +24,32 @@
                 <a href="postvideo.html">Post</a>
             </li>
             <li>
-                <a href="viewpost.html">View Post</a>
+                <a href="viewpost.html" class="active">View Post</a>
             </li>
         </ul>
     </nav>
     <main>
-        <header>
-            <h2>Home</h2>
-        </header>
-
-        <p id="item-count" style="color: white;"></p>
-        <div id="container" class="container">
-
+        <h2>Title Name</h2>
+        <p class="videoDesc">Video Description</p>
+        <div class="viewpost">
+            <h4>Author</h4>
         </div>
+        <div class="viewpost">
+            <h4>Created</h4>
+        </div>
+        <video src="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4" controls>
+
+        </video>
+
+        <section>
+            comments
+        </section>
+
+
 
         <footer>
             Alejandro Cruz-Garcia &copy; 2025
         </footer>
     </main>
 </body>
-
 </html>

@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <script defer src="../js/r.js"></script>
+
+</head>
+
+<body>
+    <header>
+        <h1>PostPlay</h1>
+    </header>
+    <nav>
+        <ul class="navLinks">
+            <li>
+                <a href="Index.html">Home</a>
+            </li>
+            <li>
+                <a href="login.html">Login</a>
+            </li>
+            <li>
+                <a href="registration.html" class="active">Register</a>
+            </li>
+            <li>
+                <a href="postvideo.html">Post</a>
+            </li>
+            <li>
+                <a href="viewpost.html">View Post</a>
+            </li>
+        </ul>
+    </nav>
+    <main>
+        <header>
+            <h2>Sign up</h2>
+        </header>
+        <div class="page-wrapper">
+            <div class="form-card">
+                <form id="reg-form">
+                    <div class="input-group">
+                        <label for="username">Username</label>
+                        <input type="text" id="username" placeholder="Username*">
+                        <small id="username-error" class="error-message"></small>
+                    </div>
+
+                    <div class="input-group">
+                        <label for="email">Email</label>
+                        <input type="email" name="email" id="email" required placeholder="Email*">
+                    </div>
+
+                    <div class="input-group">
+                        <label for="password">Password</label>
+                        <input type="password" name="password" id="password" required placeholder="Password*">
+                        <small id="password-error" class="error-message"></small>
+                    </div>
+
+                    <div class="input-group">
+                        <label for="cpassword">Confirm Password</label>
+                        <input type="password" name="cpassword" id="cpassword" required placeholder="Confirm Password*">
+                        <small id="cpassword-error" class="error-message"></small>
+                    </div>
+
+                    <div class="input-group show-password">
+                        <input type="checkbox" id="show-password">
+                        <label for="show-password">Show Password</label>
+                    </div>
+
+                    <div class="agreement-section">
+                        <div class="agreement-row">
+                            <input type="checkbox" id="age-confirm" required>
+                            <label for="age-confirm">Confirm You Are 13+</label>
+                        </div>
+
+                        <div class="agreement-row">
+                            <input type="checkbox" id="tos-confirm" required>
+                            <label for="tos-confirm">
+                                By signing up, you agree to our
+                                <a href="TOS">Terms of Service</a> and
+                                <a href="PrivacyPolicy">Privacy Policy</a>
+                            </label>
+                        </div>
+                    </div>
+
+                    <button id="submit" class="btn" type="submit">CREATE ACCOUNT</button>
+                </form>
+            </div>
+        </div>
+        <footer>
+            Alejandro Cruz-Garcia &copy; 2025
+        </footer>
+    </main>
+</body>
+
+</html>
