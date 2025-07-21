@@ -15,6 +15,144 @@ html {
 }
 
 body {
+  margin: 0;
+  background-color: #0f0f0f; /* YouTube dark */
+  color: #fff;
+  font-family: Arial, sans-serif;
+}
+
+.wrapper {
+  display: flex;
+  min-height: 100vh;
+}
+
+.sidebar {
+  height: 100vh;
+  overflow-y: auto;
+  position: sticky;
+  top: 0;
+  flex-shrink: 0;
+  width: 220px;
+  transition: width 0.3s ease;
+  overflow-x: hidden;
+  background-color: #0f0f0f; /* keep original background */
+}
+
+/* Sidebar collapsed */
+.sidebar.collapsed {
+  width: 60px;
+}
+
+/* Sidebar header: hamburger on left, logo on right */
+.sidebar-header {
+  border-bottom: 1px solid #444;
+  display: flex;
+  align-items: center;
+  padding: 0.75rem 1rem;
+}
+
+.sidebar-header .logo-link {
+  display: flex;
+  align-items: center;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  color: white;
+  text-decoration: none;
+  flex-grow: 1;
+}
+
+.sidebar-header .logo-link i {
+  font-size: 1.5rem;
+}
+
+.sidebar-header .logo-link h2 {
+  font-size: 1.5rem;
+  color: white;
+  margin: 0 0 0 0.5rem;
+}
+
+#toggleBtn {
+  min-width: 36px;
+  min-height: 36px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0;
+  margin-right: 0.75rem;
+}
+
+/* Nav links */
+.nav-link {
+  padding: 10px 15px;
+  border-radius: 4px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.nav-link:hover {
+  background-color: #2a2a2a;
+  text-decoration: none;
+}
+
+.nav-link i {
+  margin-right: 0.5rem;
+  font-size: 1.2rem;
+}
+
+/* Collapse sidebar adjustments */
+.sidebar.collapsed .nav-link {
+  text-align: center;
+  padding-left: 0.75rem;
+  padding-right: 0.75rem;
+}
+
+.sidebar.collapsed .nav-link i {
+  margin-right: 0;
+  font-size: 1.4rem;
+}
+
+.sidebar.collapsed .nav-link span.label-text {
+  display: none;
+}
+
+.sidebar.collapsed .sidebar-header .logo-link h2,
+.sidebar.collapsed .sidebar-header .logo-link .label-text {
+  display: none;
+}
+
+/* Content styling */
+.content {
+  background-color: #121212;
+  flex-grow: 1;
+  padding: 1.5rem;
+}
+
+/* Ensure sidebar header is flex and vertically centered (already set) */
+.sidebar-header {
+  display: flex;
+  align-items: center;
+  padding: 0.75rem 1rem;
+}
+
+/* Make sure the toggle button icon aligns vertically */
+#toggleBtn i {
+  line-height: 1;
+  vertical-align: middle;
+  display: flex;
+  align-items: center;
+}
+
+/* Adjust icon size and line-height for better alignment */
+.sidebar-header .logo-link i,
+#toggleBtn i {
+  font-size: 1.6rem; /* match sizes */
+  line-height: 1;
+}
+
+
+body {
   font: 14px Roboto, Arial, sans-serif;
   color: whitesmoke;
   background-color: #0f0f0f;
