@@ -1,94 +1,27 @@
-<!DOCTYPE html>
-<html lang="en">
+<div class="wrapper d-flex">
+  <div class="content flex-grow-1 p-4">
+    <main>
+      <header>
+        <h2 class="text-white mb-3">Title Name</h2>
+      </header>
 
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>View Post</title>
-  <link rel="stylesheet" href="../css/style.css" />
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet" />
-  <script defer src="../js/sidebar-toggle.js"></script>
-</head>
+      <p class="videoDesc text-white mb-4">Video Description</p>
 
-<body>
-  <div class="wrapper d-flex">
-    <!-- Sidebar -->
-    <nav id="sidebar" class="sidebar bg-dark text-white">
-      <div class="sidebar-header d-flex align-items-center px-3 py-3">
-        <button id="toggleBtn" class="btn btn-dark me-2 p-2" aria-label="Toggle sidebar">
-          <i class="bi bi-list fs-4"></i>
-        </button>
-        <a href="/" class="logo-link d-flex align-items-center text-white text-decoration-none">
-          <i class="bi bi-play-circle fs-3"></i>
-          <h2 class="mb-0 ms-2 flex-grow-1">
-            <span class="label-text">PostPlay</span>
-          </h2>
-        </a>
+      <div class="viewpost mb-3 text-white">
+        <h4>Author</h4>
       </div>
 
-      <ul class="nav flex-column px-3">
-        <li class="nav-item">
-          <a href="Index.html" class="nav-link text-white">
-            <i class="bi bi-house-door-fill me-2"></i><span class="label-text">Home</span>
-          </a>
-        </li>
-        <li class="nav-item">
-          <a href="login.html" class="nav-link text-white">
-            <i class="bi bi-box-arrow-in-right me-2"></i><span class="label-text">Login</span>
-          </a>
-        </li>
-        <li class="nav-item">
-          <a href="register.html" class="nav-link text-white">
-            <i class="bi bi-person-plus-fill me-2"></i><span class="label-text">Register</span>
-          </a>
-        </li>
-        <li class="nav-item">
-          <a href="post.html" class="nav-link text-white">
-            <i class="bi bi-upload me-2"></i><span class="label-text">Post</span>
-          </a>
-        </li>
-        <li class="nav-item">
-          <a href="view.html" class="nav-link active text-white">
-            <i class="bi bi-eye-fill me-2"></i><span class="label-text">View Post</span>
-          </a>
-        </li>
-      </ul>
-    </nav>
+      <div class="viewpost mb-4 text-white">
+        <h4>Created</h4>
+      </div>
 
-    <div class="content flex-grow-1 p-4">
-      <main>
-        <header>
-          <h2 class="text-white mb-3">Title Name</h2>
-        </header>
+      <video class="w-100 rounded"
+        src="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4" controls
+        preload="metadata"></video>
 
-        <p class="videoDesc text-white mb-4">Video Description</p>
-
-        <div class="viewpost mb-3 text-white">
-          <h4>Author</h4>
-        </div>
-
-        <div class="viewpost mb-4 text-white">
-          <h4>Created</h4>
-        </div>
-
-        <video
-          class="w-100 rounded"
-          src="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4"
-          controls
-          preload="metadata"
-        ></video>
-
-        <section class="mt-4 text-white">
-          <h3>Comments</h3>
-        </section>
-
-        <footer class="text-white mt-5 text-center">
-          Alejandro Cruz-Garcia &copy; 2025
-        </footer>
-      </main>
-    </div>
+      <section class="mt-4 text-white">
+        <h3>Comments</h3>
+      </section>
+    </main>
   </div>
-</body>
-
-</html>
+</div>

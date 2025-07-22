@@ -18,8 +18,8 @@ router.get('/register', function (req, res, next) {
   res.render('register', { title: 'Register' });
 });
 
-router.get('/viewpost', function (req, res, next) {
-  res.render('viewpost', { title: 'View Post' });
+router.get('/view', function (req, res, next) {
+  res.render('view', { title: 'View Post' });
 });
 
 
