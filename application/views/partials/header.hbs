@@ -1,38 +1,44 @@
+<button id="toggleBtn" class="btn btn-dark p-2" aria-label="Toggle sidebar">
+  <i class="bi bi-list fs-4"></i>
+</button>
+
 <nav id="sidebar" class="sidebar text-white min-vh-100 d-flex flex-column p-3">
   <div class="sidebar-header d-flex align-items-center mb-4">
-    <button id="toggleBtn" class="btn btn-dark me-2 p-2" aria-label="Toggle sidebar">
-      <i class="bi bi-list fs-4"></i>
-    </button>
     <a href="/" class="logo-link d-flex align-items-center text-white text-decoration-none">
       <i class="bi bi-play-circle fs-3"></i>
-      <h2 class="mb-0 ms-2">PostPlay</h2>
+      <h2 class="mb-0 ms-2 label-text">PostPlay</h2>
     </a>
   </div>
 
   <ul class="nav flex-column">
     <li class="nav-item">
-      <a href="/" class="nav-link text-white">
-        <i class="bi bi-house-door-fill me-2"></i> Home
+      <a href="/" class="nav-link text-white {{#if active.home}}active{{/if}}">
+        <i class="bi bi-house-door-fill me-2"></i>
+        <span class="label-text">Home</span>
       </a>
     </li>
     <li class="nav-item">
-      <a href="/login" class="nav-link active text-white">
-        <i class="bi bi-box-arrow-in-right me-2"></i> Login
+      <a href="/login" class="nav-link text-white {{#if active.login}}active{{/if}}">
+        <i class="bi bi-box-arrow-in-right me-2"></i>
+        <span class="label-text">Login</span>
       </a>
     </li>
     <li class="nav-item">
-      <a href="/register" class="nav-link text-white">
-        <i class="bi bi-person-plus-fill me-2"></i> Register
+      <a href="/register" class="nav-link text-white {{#if active.register}}active{{/if}}">
+        <i class="bi bi-person-plus-fill me-2"></i>
+        <span class="label-text">Register</span>
       </a>
     </li>
     <li class="nav-item">
-      <a href="/post" class="nav-link text-white">
-        <i class="bi bi-pencil-square me-2"></i> Post
+      <a href="/post" class="nav-link text-white {{#if active.post}}active{{/if}}">
+        <i class="bi bi-pencil-square me-2"></i>
+        <span class="label-text">Post</span>
       </a>
     </li>
     <li class="nav-item">
-      <a href="/view" class="nav-link text-white">
-        <i class="bi bi-eye-fill me-2"></i> View
+      <a href="/view" class="nav-link text-white {{#if active.view}}active{{/if}}">
+        <i class="bi bi-eye-fill me-2"></i>
+        <span class="label-text">View</span>
       </a>
     </li>
   </ul>
