@@ -82,44 +82,96 @@ body {
   margin-right: 0.75rem;
 }
 
-/* Nav links */
-.nav-link {
-  padding: 10px 15px;
-  border-radius: 4px;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
+.sidebar.collapsed .label-text {
+  display: none;
 }
 
+/* Base nav-link */
+.nav-link {
+  width: 100%;
+  box-sizing: border-box;
+  border: 2px solid transparent; /* reserve space so border on hover doesn't shift */
+  border-radius: 6px;
+  transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+  color: white;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  padding: 10px 15px;
+  cursor: pointer;
+  position: relative;
+}
+
+/* Hover effect */
 .nav-link:hover {
-  background-color: #2a2a2a;
+  background-color: #1e1e1e; /* subtle bg */
   text-decoration: none;
 }
 
+/* Icon inside nav-link */
 .nav-link i {
   margin-right: 0.5rem;
   font-size: 1.2rem;
 }
 
-/* Collapse sidebar adjustments */
+/* Active tab highlight for expanded sidebar */
+.nav-link.active {
+  background-color: #3a3a3a;  /* subtle grey rectangle */
+  color: white;
+  border-radius: 6px;
+  border: none;
+}
+
+/* Collapsed sidebar nav links */
 .sidebar.collapsed .nav-link {
-  text-align: center;
-  padding-left: 0.75rem;
-  padding-right: 0.75rem;
+  padding: 0;
+  justify-content: center;
+  height: 48px;
+  border-radius: 6px;
 }
 
-.sidebar.collapsed .nav-link i {
-  margin-right: 0;
-  font-size: 1.4rem;
+/* Remove base bg for collapsed active nav-link so only ::before shows */
+.sidebar.collapsed .nav-link.active {
+  background-color: transparent;
+  border: none;
 }
 
-.sidebar.collapsed .nav-link span.label-text {
-  display: none;
+/* Square hover effect behind icon in collapsed */
+.sidebar.collapsed .nav-link::before {
+  content: "";
+  position: absolute;
+  width: 40px;
+  height: 40px;
+  border-radius: 6px;
+  border: 2px solid transparent;
+  background-color: transparent;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  transition: border-color 0.2s ease, background-color 0.2s ease;
+  pointer-events: none;
+  z-index: 0;
 }
 
-.sidebar.collapsed .sidebar-header .logo-link h2,
-.sidebar.collapsed .sidebar-header .logo-link .label-text {
-  display: none;
+/* Hover effect for collapsed */
+.sidebar.collapsed .nav-link:hover::before {
+  background-color: #1e1e1e;
+  border-color: transparent;
+}
+
+/* Active tab highlight for collapsed sidebar with rounded corners */
+.sidebar.collapsed .nav-link.active::before {
+  background-color: #3a3a3a; /* same grey */
+  border-color: transparent;
+  border-radius: 10px; /* rounded corners */
+  z-index: 0;
+}
+
+/* Active icon color */
+.nav-link.active i {
+  color: white;
+  position: relative; /* ensure icon stays on top */
+  z-index: 1;
 }
 
 /* Content styling */
@@ -129,11 +181,33 @@ body {
   padding: 1.5rem;
 }
 
-/* Ensure sidebar header is flex and vertically centered (already set) */
+/* Sidebar header bg overrides */
 .sidebar-header {
+  background-color: transparent !important; /* force no bg */
+  padding: 0.75rem 1rem;
   display: flex;
   align-items: center;
-  padding: 0.75rem 1rem;
+}
+
+.logo-link {
+  background-color: transparent !important;
+  box-shadow: none !important;
+  border: none !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  text-decoration: none;
+  color: white;
+  display: flex;
+  align-items: center;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.logo-link h2 {
+  background-color: transparent !important;
+  margin: 0 0 0 0.5rem;
+  color: white;
 }
 
 /* Make sure the toggle button icon aligns vertically */
@@ -142,15 +216,26 @@ body {
   vertical-align: middle;
   display: flex;
   align-items: center;
+  font-size: 1.6rem;
 }
 
-/* Adjust icon size and line-height for better alignment */
-.sidebar-header .logo-link i,
-#toggleBtn i {
+.sidebar.collapsed .sidebar-header {
+  height: 60px; /* same as sidebar width when collapsed */
+  justify-content: center;
+}
+
+.sidebar.collapsed #toggleBtn {
+  margin-right: 0;
+}
+
+.sidebar-header .logo-link i {
   font-size: 1.6rem; /* match sizes */
   line-height: 1;
 }
 
+/* -------------------- */
+/* OTHER GENERAL STYLES */
+/* -------------------- */
 
 body {
   font: 14px Roboto, Arial, sans-serif;
@@ -162,7 +247,7 @@ body {
 }
 
 /* -------------------- */
-/* NAVIGATION */
+/* NAVIGATION (legacy? can ignore if unused) */
 /* -------------------- */
 .navLinks {
   list-style-type: none;
