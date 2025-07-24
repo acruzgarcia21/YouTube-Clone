@@ -7,27 +7,27 @@
 
       <div class="page-wrapper">
         <div class="form-card mx-auto" style="max-width: 400px;">
-          <form id="reg-form" novalidate>
+          <form id="reg-form" action="/users/register" method="POST" enctype="application/x-www-form-urlencoded">
             <div class="mb-3">
               <label for="username" class="form-label text-white">Username</label>
-              <input type="text" id="username" class="form-control" placeholder="Username*" required />
+              <input type="text" id="username" class="form-control" placeholder="Username*" name="Username" />
               <small id="username-error" class="error-message text-danger"></small>
             </div>
 
             <div class="mb-3">
               <label for="email" class="form-label text-white">Email</label>
-              <input type="email" id="email" class="form-control" placeholder="Email*" required />
+              <input type="email" id="email" class="form-control" placeholder="Email*" name="email" />
             </div>
 
             <div class="mb-3">
               <label for="password" class="form-label text-white">Password</label>
-              <input type="password" id="password" class="form-control" placeholder="Password*" required />
+              <input type="password" id="password" class="form-control" placeholder="Password*" name="password" />
               <small id="password-error" class="error-message text-danger"></small>
             </div>
 
             <div class="mb-3">
               <label for="cpassword" class="form-label text-white">Confirm Password</label>
-              <input type="password" id="cpassword" class="form-control" placeholder="Confirm Password*" required />
+              <input type="password" id="cpassword" class="form-control" placeholder="Confirm Password*" name="cpassword"/>
               <small id="cpassword-error" class="error-message text-danger"></small>
             </div>
 
@@ -38,12 +38,12 @@
 
             <div class="agreement-section mb-3">
               <div class="form-check mb-2 text-white">
-                <input type="checkbox" id="age-confirm" class="form-check-input" required />
+                <input type="checkbox" id="age-confirm" class="form-check-input" name="aoc" />
                 <label for="age-confirm" class="form-check-label">Confirm You Are 13+</label>
               </div>
 
               <div class="form-check text-white">
-                <input type="checkbox" id="tos-confirm" class="form-check-input" required />
+                <input type="checkbox" id="tos-confirm" class="form-check-input" name="tos" />
                 <label for="tos-confirm" class="form-check-label">
                   By signing up, you agree to our
                   <a href="TOS" class="text-info">Terms of Service</a> and
