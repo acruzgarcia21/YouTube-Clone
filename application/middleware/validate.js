@@ -1,5 +1,8 @@
-module.export = {
+const db = require('../config/database');
+
+module.exports = {
     doesUsernameExist: async function (req, res, next) {
+        var{username} = req.body;
         next()
     },
     doesEmailExist: async function (req, res, next) {
