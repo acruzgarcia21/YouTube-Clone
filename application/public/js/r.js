@@ -77,8 +77,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
         if (usernameResult.valid && passwordResult.valid && passwordsMatch) {
             submitBtn.removeAttribute("disabled");
+            return true;
         } else {
             submitBtn.setAttribute("disabled", true);
+            return false;
         }
     }
 
@@ -99,24 +101,11 @@ document.addEventListener('DOMContentLoaded', () => {
     // Submit handler
     if (regForm) {
         regForm.addEventListener('submit', function (e) {
-            e.preventDefault();
-            validateForm();
-
-            var usernameResult = isValidUsername(usernameField.value.trim());
-            var passwordResult = isValidPassword(passwordField.value);
-            var passwordsMatch = passwordField.value === cpasswordField.value;
-
-            if (usernameResult.valid && passwordResult.valid && passwordsMatch) {
-                console.log("FORM SUBMITTED!");
-                alert("Account created successfully!");
-                regForm.reset();
-
-                usernameField.classList.remove("valid");
-                passwordField.classList.remove("valid");
-                cpasswordField.classList.remove("valid");
-                submitBtn.setAttribute("disabled", true);
-            } else {
+            if (!validateForm()) {
+                e.preventDefault(); 
                 console.log("Validation failed! Form was not submitted...");
+            } else {
+                console.log("Form is valid, submitting...");
             }
         });
     }

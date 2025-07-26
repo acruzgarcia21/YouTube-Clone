@@ -7,7 +7,9 @@ const logger = require("morgan");
 const handlebars = require("express-handlebars");
 const indexRouter = require("./routes/index");
 const usersRouter = require("./routes/users");
-
+const session = require('express-session');
+const MySQLStore = require('express-mysql-session')(session);
+const flash = require('express-flash');
 const app = express();
 
 app.engine(
@@ -21,15 +23,31 @@ app.engine(
   })
 );
 
+const sessionStore = new MySQLStore(
+  {/* default options */ },
+  require('./config/database')
+);
+
 // view engine setup
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "hbs");
 
+app.use(session({
+  key: 'CS_ID',
+  secret: 'CSC_317_SUPER_SECRET',
+  store: sessionStore,
+  resave: false,
+  saveUninitialized: true,
+  cookie: {
+    httpOnly: true,
+    secure: false
+  }
+}));
 
 app.use(logger("dev"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
-app.use(cookieParser());
+app.use(cookieParser('CSC_317_SUPER_SECRET'));
 app.use(favicon(__dirname + '/public/favicon.ico'));
 
 app.use((req, res, next) => {
@@ -42,7 +60,12 @@ app.use((req, res, next) => {
     view: path === '/view',
   };
   next();
-}); 
+});
+
+app.use(function(req,res,next) {
+  console.log(req.session);
+  
+})
 
 app.use("/public", express.static(path.join(__dirname, "public")));
 app.use("/users", usersRouter); // route middleware from ./routes/users.js
@@ -54,10 +77,10 @@ app.use("/", indexRouter); // route middleware from ./routes/index.js
  * Catch all route, if we get to here then the 
  * resource requested could not be found.
  */
-app.use((req,res,next) => {
+app.use((req, res, next) => {
   next(createError(404, `The route ${req.method} : ${req.url} does not exist.`));
 })
-  
+
 
 /**
  * Error Handler, used to render the error html file
