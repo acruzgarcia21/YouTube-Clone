@@ -32,6 +32,13 @@ const sessionStore = new MySQLStore(
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "hbs");
 
+app.use(logger("dev"));
+app.use(express.json());
+app.use(express.urlencoded({ extended: false }));
+app.use(cookieParser('CSC_317_SUPER_SECRET'));
+app.use(favicon(__dirname + '/public/favicon.ico'));
+app.use("/public", express.static(path.join(__dirname, "public")));
+
 app.use(session({
   key: 'CS_ID',
   secret: 'CSC_317_SUPER_SECRET',
@@ -43,12 +50,6 @@ app.use(session({
     secure: false
   }
 }));
-
-app.use(logger("dev"));
-app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
-app.use(cookieParser('CSC_317_SUPER_SECRET'));
-app.use(favicon(__dirname + '/public/favicon.ico'));
 
 app.use((req, res, next) => {
   const path = req.path;
@@ -64,10 +65,10 @@ app.use((req, res, next) => {
 
 app.use(function(req,res,next) {
   console.log(req.session);
-  
+  next();
 })
 
-app.use("/public", express.static(path.join(__dirname, "public")));
+app.use(flash());
 app.use("/users", usersRouter); // route middleware from ./routes/users.js
 app.use("/", indexRouter); // route middleware from ./routes/index.js
 
