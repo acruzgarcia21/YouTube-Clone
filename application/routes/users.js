@@ -4,6 +4,7 @@ const { doesUsernameExist, doesEmailExist, validateEmail, validatePassword,
   validateUsername } = require('../middleware/validate');
 const db = require('../config/database');
 const bcrypt = require('bcrypt');
+const { isLoggedIn } = require('../middleware/auth.js');
 /**
  *  /users/register
  * 
@@ -90,6 +91,30 @@ router.post("/logout",
     );
   }
 );
+
+router.get('/:id(\\d+)', isLoggedIn, async function (req, res) {
+  const user_id = req.params.id;
+
+  try {
+    const [rows] = await db.query("SELECT username, email FROM user WHERE user_id = ?", [user_id]);
+
+    if (rows.length === 0) {
+      req.flash("error", "User not found.");
+      return res.redirect('/');
+    }
+
+    const user = rows[0];
+
+    res.render('profile', {
+      title: `${user.username}'s Profile`,
+      user
+    });
+  } catch (err) {
+    console.error("Failed to load profile:", err);
+    req.flash("error", "Could not load profile.");
+    res.redirect('/');
+  }
+});
 
 
 module.exports = router;
