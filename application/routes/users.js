@@ -4,7 +4,7 @@ const { doesUsernameExist, doesEmailExist, validateEmail, validatePassword,
   validateUsername } = require('../middleware/validate');
 const db = require('../config/database');
 const bcrypt = require('bcrypt');
-const { isLoggedIn } = require('../middleware/auth.js');
+const { isLoggedIn, isMyProfile } = require('../middleware/auth.js');
 /**
  *  /users/register
  * 
@@ -77,7 +77,7 @@ router.post("/login",
   }
 );
 
-router.get('/profile', isLoggedIn, async function (req, res) {
+router.get('/profile', isLoggedIn, isMyProfile, async function (req, res) {
   const user_id = req.session.user.user_id;
 
   try {
@@ -116,7 +116,7 @@ router.post("/logout",
   }
 );
 
-router.get('/:id(\\d+)', isLoggedIn, async function (req, res) {
+router.get('/:id(\\d+)', isLoggedIn, isMyProfile, async function (req, res) {
   const user_id = req.params.id;
 
   try {

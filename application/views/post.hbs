@@ -5,7 +5,7 @@
         <h2 class="text-white mb-4">Upload Your Videos</h2>
       </header>
 
-      <form action="#" method="post" enctype="multipart/form-data" style="max-width: 400px; margin: auto;">
+      <form action="/posts/create" method="POST" enctype="multipart/form-data" style="max-width: 400px; margin: auto;">
         <label for="title" class="form-label text-white">Video Title:</label>
         <input type="text" name="title" id="title" class="form-control mb-3" required />
 
@@ -13,10 +13,10 @@
         <input type="text" name="description" id="description" class="form-control mb-3" required />
 
         <label for="upload" class="form-label text-white">Select Files To Upload:</label>
-        <input type="file" name="upload" id="upload" class="form-control mb-3" multiple required />
+        <input type="file" name="videoUpload" id="upload" class="form-control mb-3" multiple required />
 
         <div class="form-check mb-3">
-          <input type="checkbox" id="acceptable-use" name="acceptable-use" class="form-check-input" required />
+          <input type="checkbox" id="acceptable-use" name="aop" class="form-check-input" required />
           <label for="acceptable-use" class="form-check-label text-white">
             By uploading, you agree to the acceptable use policy for uploading videos.
           </label>

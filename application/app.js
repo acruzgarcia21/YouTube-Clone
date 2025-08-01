@@ -5,11 +5,13 @@ const path = require("path");
 const cookieParser = require("cookie-parser");
 const logger = require("morgan");
 const handlebars = require("express-handlebars");
-const indexRouter = require("./routes/index");
-const usersRouter = require("./routes/users");
 const session = require('express-session');
 const MySQLStore = require('express-mysql-session')(session);
 const flash = require('express-flash');
+
+const indexRouter = require("./routes/index");
+const usersRouter = require("./routes/users");
+const postsRouter = require("./routes/posts");
 const app = express();
 
 app.engine(
@@ -65,7 +67,7 @@ app.use((req, res, next) => {
   next();
 });
 
-app.use(function(req,res,next) {
+app.use(function (req, res, next) {
   console.log(req.session);
   next();
 })
@@ -79,6 +81,7 @@ app.use(function (req, res, next) {
 });
 
 app.use("/users", usersRouter); // route middleware from ./routes/users.js
+app.use("/posts", postsRouter);
 app.use("/", indexRouter); // route middleware from ./routes/index.js
 
 
