@@ -1,40 +1,42 @@
 <div class="wrapper d-flex">
   <div class="content flex-grow-1 p-4">
     <main>
-      <header>
-        <h2 class="text-white mb-4">Your Profile</h2>
+      <!-- Profile Header -->
+      <header class="d-flex align-items-center mb-4">
+        <div class="rounded-circle bg-secondary d-flex justify-content-center align-items-center"
+          style="width: 80px; height: 80px; font-size: 2.5rem; color: white; user-select:none;">
+          {{user.username.[0]}}
+        </div>
+        <div class="ms-3" "text-white">
+          <h2 class="mb-0">{{user.username}}</h2>
+          <p class="mb-0">{{user.email}}</p>
+        </div>
       </header>
 
-      <div class="page-wrapper">
-        <div class="form-card mx-auto" style="max-width: 400px;">
-          {{#if success}}
-            <div class="alert alert-success">{{success}}</div>
-          {{/if}}
+      <!-- Profile Content Card -->
+      <div class="card bg-dark border-secondary mx-auto" style="max-width: 700px;">
+        <div class="card-body">
+          <h5 class="card-title text-white mb-3">About</h5>
+          <p class="text-muted">Welcome to your profile page! You can customize this area with more info about yourself.
+          </p>
 
-          {{#if error}}
-            <div class="alert alert-danger">{{error}}</div>
-          {{/if}}
+          <hr class="border-secondary">
 
-          <div class="mb-3">
-            <label class="form-label text-white">Username</label>
-            <input type="text" class="form-control" value="{{user.username}}" readonly />
+          <div class="row text-white">
+            <!-- Add more user stats or info here if needed -->
           </div>
-
-          <div class="mb-3">
-            <label class="form-label text-white">Email</label>
-            <input type="email" class="form-control" value="{{user.email}}" readonly />
-          </div>
-
-          <div class="mb-3">
-            <label class="form-label text-white">User ID</label>
-            <input type="text" class="form-control" value="{{user.user_id}}" readonly />
-          </div>
-
-          <form action="/users/logout" method="POST" class="mt-3">
-            <button type="submit" class="btn btn-danger w-100">Log Out</button>
-          </form>
         </div>
+        <!-- Inside your card body, below user info -->
+        <form action="/users/profile/upload" method="POST" enctype="multipart/form-data" class="mb-3">
+          <label for="profileImage" class="form-label text-white">Upload Profile Picture</label>
+          <input type="file" name="profileImage" id="profileImage" accept="image/*" class="form-control mb-2"
+            required />
+          <button type="submit" class="btn btn-primary">Upload</button>
+        </form>
+
       </div>
+
+
     </main>
   </div>
 </div>

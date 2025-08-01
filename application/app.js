@@ -59,6 +59,8 @@ app.use((req, res, next) => {
     register: path === '/register',
     post: path === '/post',
     view: path === '/view',
+    profile: path === '/users/profile',
+    logout: path === '/users/logout'
   };
   next();
 });
@@ -69,6 +71,13 @@ app.use(function(req,res,next) {
 })
 
 app.use(flash());
+app.use(function (req, res, next) {
+  res.locals.user = req.session.user;
+  res.locals.success = req.flash('success');
+  res.locals.error = req.flash('error');
+  next();
+});
+
 app.use("/users", usersRouter); // route middleware from ./routes/users.js
 app.use("/", indexRouter); // route middleware from ./routes/index.js
 

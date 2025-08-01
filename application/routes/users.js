@@ -77,6 +77,30 @@ router.post("/login",
   }
 );
 
+router.get('/profile', isLoggedIn, async function (req, res) {
+  const user_id = req.session.user.user_id;
+
+  try {
+    const [rows] = await db.query("SELECT user_id, username, email FROM user WHERE user_id = ?", [user_id]);
+
+    if (rows.length === 0) {
+      req.flash("error", "User not found.");
+      return res.redirect('/');
+    }
+
+    const user = rows[0];
+
+    res.render('profile', {
+      title: `${user.username}'s Profile`,
+      user
+    });
+  } catch (err) {
+    console.error("Failed to load profile:", err);
+    req.flash("error", "Could not load profile.");
+    res.redirect('/');
+  }
+});
+
 router.post("/logout",
   function (req, res, next) {
     req.session.destroy(
