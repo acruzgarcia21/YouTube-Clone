@@ -18,9 +18,7 @@ router.get('/register', function (req, res, next) {
   res.render('register', { title: 'Register', css: ['style.css'], js: ['r.js'] });
 });
 
-router.get('/view', function (req, res, next) {
-  res.render('view', { title: 'View Post', css: ['style.css'] });
-});
+
 
 
 module.exports = router;
