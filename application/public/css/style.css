@@ -562,3 +562,45 @@ input[type="checkbox"] {
     width: 100%;
   }
 }
+
+
+/* -------------------- */
+/* CUSTOM SEARCH BAR */
+/* -------------------- */
+
+.search-container {
+  max-width: 600px;
+  margin: 1rem auto 2rem auto;
+}
+
+.search-container form {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.search-container input[type="text"] {
+  flex-grow: 1;
+  min-width: 0;
+  padding: 0.75rem 1rem;
+  font-size: 1.25rem;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+}
+
+.search-container button {
+  padding: 0 1rem;
+  font-size: 1.25rem;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+  background-color: #0d6efd;
+  color: white;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.search-container button:hover {
+  background-color: #084298;
+}

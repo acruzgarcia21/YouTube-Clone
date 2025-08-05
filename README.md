@@ -19,9 +19,18 @@ Please follow the instructions below and fill in the information requested when 
 # Build/Run Instructions
 
 ## Build Instructions
-1. steps here
-2. steps here
+1. npm install
+2. set up .env file
+
+|       Variable        |      Value      |
+|:-------------:|:---------------------:|
+| DB_HOST  | hostname |
+| DB_USER    | user             |
+| DB_PASSWORD | password  |
+| DB_NAME | name  |
+| DB_PORT | port #  |
+| PORT | port #  |
+3. npm run builddb
 
 ## Run Instructions
-1. steps here
-2. steps here 
+1. npm start

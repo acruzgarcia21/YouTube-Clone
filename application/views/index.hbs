@@ -1,9 +1,10 @@
 <div class="wrapper d-flex">
   <div class="content flex-grow-1 p-4">
     <main>
-      <h2 class="text-white">Home</h2>
-      <p id="item-count" class="text-white"></p>
-      <div id="container" class="container"></div>
+      {{> search}}
+      {{#each results}}
+      {{>card this}}
+      {{/each}}
     </main>
   </div>
 </div>

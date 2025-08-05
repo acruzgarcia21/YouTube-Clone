@@ -3,6 +3,7 @@ const router = express.Router();
 const multer = require('multer');
 const { isLoggedIn } = require('../middleware/auth');
 const db = require("../config/database");
+const { getPostById, getCommentsByPostId } = require('../middleware/post');
 const storage = multer.diskStorage({
     destination: function (req, file, cb) {
         cb(null, 'public/videos/uploads')
@@ -16,7 +17,6 @@ const storage = multer.diskStorage({
 
 const uploader = multer({ storage: storage });
 
-
 router.post('/create', isLoggedIn, uploader.single('videoUpload'), async function (req, res, next) {
     const user_id = req.session.user.user_id;
     const { title, description } = req.body;
@@ -29,7 +29,7 @@ router.post('/create', isLoggedIn, uploader.single('videoUpload'), async functio
         })
     }
     try {
-        const [ resultObj, _ ] = await db.query(`INSERT INTO post (title, description, video, thumbnail, fk_user_id) VALUE 
+        const [resultObj, _] = await db.query(`INSERT INTO post (title, description, video, thumbnail, fk_user_id) VALUE 
             (?,?,?,?,?)`, [title, description, path, "", user_id]);
 
         if (resultObj.affectedRows == 1) {
@@ -50,8 +50,27 @@ router.post('/create', isLoggedIn, uploader.single('videoUpload'), async functio
     }
 });
 
-router.get('/:id(\\d+)', function (req, res, next) {
-  res.render('view', { title: 'View Post', css: ['style.css'] });
+router.get("/:id(\\d+)", getPostById, getCommentsByPostId, function (req, res, next) {
+    res.render('view', {
+        title: 'View Post',
+        css: ['style.css']
+    });
+});
+
+router.get("/search", async function (req, res, next) {
+    const { s } = req.query;
+    if (s == "") {
+
+    }
+    var searchKey = `%${s}%`;
+    var [rows, _] = await db.query(`select post_id, title, thumbnail, concat_ws(' ' , title, description) as haystack from post
+    having haystack like ?';`, [searchKey]);
+});
+
+router.delete("/:id(\\d+)", isLoggedIn, async function (req, res, next) {
+    const { id } = req.params;
+    const { user_id } = req.session.user;
+
 });
 
 module.exports = router;

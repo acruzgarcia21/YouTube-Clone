@@ -5,6 +5,7 @@ const { doesUsernameExist, doesEmailExist, validateEmail, validatePassword,
 const db = require('../config/database');
 const bcrypt = require('bcrypt');
 const { isLoggedIn, isMyProfile } = require('../middleware/auth.js');
+const { getPostByUserId } = require('../middleware/post.js');
 /**
  *  /users/register
  * 
@@ -92,7 +93,7 @@ router.post("/logout",
   }
 );
 
-router.get('/:id(\\d+)', isLoggedIn, isMyProfile, async function (req, res) {
+router.get('/:id(\\d+)', isLoggedIn, isMyProfile, getPostByUserId, async function (req, res) {
   const user_id = req.params.id;
 
   try {
