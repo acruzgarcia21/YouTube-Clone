@@ -1,29 +1,62 @@
 <div class="wrapper d-flex">
   <div class="content flex-grow-1 p-4">
+    {{log this}}
     <main>
       {{> search}}
-      <header>
-        <h2 class="text-white mb-3">Title Name</h2>
-      </header>
 
-
-      <p class="videoDesc text-white mb-4">Video Description</p>
-
-      <div class="viewpost mb-3 text-white">
-        <h4>Author</h4>
-      </div>
+      <video class="w-100 rounded" controls>
+        <source src="/{{post.video}}" type="video/mp4">
+      </video>
 
       <div class="viewpost mb-4 text-white">
-        <h4>Created</h4>
+        <h2 class="post-title">{{post.title}}</h2>
+        <div class="post-author-date d-flex justify-content-between align-items-center">
+          <div>
+            <p class="author mb-0">{{post.username}}</p>
+            <p class="date-posted mb-0"><small>{{formatDate post.created_at}}</small></p>
+          </div>
+
+          <div class="d-flex align-items-center gap-3">
+            <button id="like-button" class="btn btn-outline-light d-flex align-items-center gap-2"
+              data-postid="{{post.post_id}}">
+              <i class="bi {{#if post.liked}}bi-hand-thumbs-up-fill{{else}}bi-hand-thumbs-up{{/if}}"></i>
+              <span>{{#if post.liked}}Liked{{else}}Like{{/if}}</span>
+            </button>
+            <span class="text-white ms-2" id="like-count">{{post.likeCount}}</span>
+
+
+            <div class="text-white d-flex align-items-center gap-1">
+              <i class="bi bi-chat-dots"></i>
+              <span id="comment-count">{{comments.length}}</span>
+            </div>
+          </div>
+        </div>
+
+        <p class="post-description mt-3">
+          {{post.description}}
+        </p>
       </div>
 
-      <video class="w-100 rounded"
-        src="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4" controls
-        preload="metadata"></video>
+      <div class="comment-box mt-4">
+        <h5 class="text-white mb-3">Add a comment</h5>
+        <div class="d-flex gap-3">
+          <img src="" alt="User Avatar" class="rounded-circle" width="48" height="48">
+          <textarea name="comment" id="comment-text" class="form-control flex-grow-1" rows="3"
+            placeholder="Write a comment..."></textarea>
+        </div>
+        <div class="mt-2 d-flex justify-content-end">
+          <button id="comment-button" data-postid="{{post.post_id}}" class="btn btn-primary px-4">Comment</button>
+        </div>
+      </div>
 
-      <section class="mt-4 text-white">
-        <h3>Comments</h3>
-      </section>
+      <div class="comments mt-4" id="comment-list">
+        {{#each comments}}
+        <div class="comment mb-3 p-2 rounded bg-dark text-white">
+          <p><strong>{{this.username}}</strong> <small>{{formatDate this.created_at}}</small></p>
+          <p>{{this.text}}</p>
+        </div>
+        {{/each}}
+      </div>
     </main>
   </div>
 </div>

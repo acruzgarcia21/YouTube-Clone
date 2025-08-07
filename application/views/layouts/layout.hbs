@@ -12,20 +12,22 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" />
 
   {{#each css}}
-    <link rel="stylesheet" href="/public/css/{{this}}">
+  <link rel="stylesheet" href="/public/css/{{this}}">
   {{/each}}
 
   <script defer src="/public/js/sidebar-toggle.js"></script>
   <script defer src="/public/js/r.js"></script>
+  <script defer src="/public/js/viewpost.js"></script>
+  <script defer src="/public/js/like-button.js"></script>
 
   {{#each js}}
-    <script defer src="/public/js/{{this}}"></script>
+  <script defer src="/public/js/{{this}}"></script>
   {{/each}}
 </head>
 
 <body class="d-flex flex-column min-vh-100 bg-dark text-white">
   <div class="d-flex flex-grow-1">
-    {{> header}} 
+    {{> header}}
     <div class="flex-grow-1 d-flex flex-column">
       {{{body}}}
       {{> footer}}
