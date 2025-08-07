@@ -16,7 +16,12 @@ router.post("/create", isLoggedIn, async function (req, res, next) {
             `INSERT INTO comments (text, fk_post_id, fk_user_id) VALUES (?, ?, ?)`,
             [text, post_id, user_id]
         );
-        res.json({ message: "Comment created successfully!" });
+        res.json({
+            id: result.insertId,
+            text,
+            username: req.session.user.username,
+            created_at: new Date().toISOString()
+        });
 
     } catch (err) {
         next(err);

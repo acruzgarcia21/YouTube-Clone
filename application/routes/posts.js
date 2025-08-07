@@ -54,7 +54,6 @@ router.post('/create', isLoggedIn, uploader.single('videoUpload'), makeThumbnail
   }
 );
 
-
 router.get("/:id(\\d+)", getPostById, getCommentsByPostId, getLikesByPostId, function (req, res, next) {
     res.render('view', {
         title: 'View Post',
@@ -65,7 +64,6 @@ router.get("/:id(\\d+)", getPostById, getCommentsByPostId, getLikesByPostId, fun
         userLiked: res.locals.userLiked || false
     });
 });
-
 
 router.get("/search", async function (req, res, next) {
     const { s } = req.query;

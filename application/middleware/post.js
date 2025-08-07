@@ -47,8 +47,7 @@ module.exports = {
                 WHERE post_id = ?;
             `, [id]);
 
-
-            const post = row[0];
+            const post = rows[0];
             if (!post) {
                 return res.status(404).send("Post not found");
             }
@@ -62,20 +61,19 @@ module.exports = {
     getCommentsByPostId: async function (req, res, next) {
         try {
             const { id } = req.params;
-            const [rows, _] = await db.query(`
-                SELECT c.id, c.text, c.created_at, u.username
-                FROM comments c
-                JOIN user u ON c.fk_user_id = u.user_id
-                WHERE c.fk_post_id = ?
-                ORDER BY c.created_at DESC;
-            `, [id]);
-            res.locals.post.commments = rows;
-            next();
-        } catch (error) {
-            next(error);
-        }
+            const [comments] = await db.query(`
+            SELECT c.id, c.text, u.username, c.created_at
+            FROM comments c
+            JOIN user u ON c.fk_user_id = u.user_id
+            WHERE c.fk_post_id = ?
+            ORDER BY c.created_at DESC;
+        `, [id]);
 
-        // res.locals.post.comments 
+            res.locals.comments = comments || [];
+            next();
+        } catch (err) {
+            next(err);
+        }
     },
     getLikesByPostId: async function (req, res, next) {
         try {
