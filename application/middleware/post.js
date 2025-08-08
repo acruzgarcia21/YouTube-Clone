@@ -102,14 +102,15 @@ module.exports = {
     },
     getPostByUserId: async function (req, res, next) {
         try {
-            const user_id = req.params.user_id;
-            const [rows, _] = await db.query(`
-                SELECT post_id, title, description, thumbnail, video, created_at
-                FROM post
-                WHERE fk_user_id = ?
-                ORDER BY created_at DESC;
-            `, [user_id]);
-            res.locals.post.userPosts = rows;
+            const user_id = req.params.id;  // must match param name in route
+            const [rows] = await db.query(`
+      SELECT post_id, title, description, thumbnail, video, created_at
+      FROM post
+      WHERE fk_user_id = ?
+      ORDER BY created_at DESC
+    `, [user_id]);
+            res.locals.userPosts = rows;
+            next();
         } catch (error) {
             next(error);
         }

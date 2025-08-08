@@ -12,11 +12,12 @@ router.post("/create", isLoggedIn, async function (req, res, next) {
             return res.status(400).json({ error: "Missing comment text or post ID" });
         }
 
-        const [row, _] = await db.query(
+        const [result, _] = await db.query(
             `INSERT INTO comments (text, fk_post_id, fk_user_id) VALUES (?, ?, ?)`,
             [text, post_id, user_id]
         );
         res.json({
+            success: true,
             id: result.insertId,
             text,
             username: req.session.user.username,

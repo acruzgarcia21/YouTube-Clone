@@ -1,11 +1,25 @@
-{{log this}}
 <div class="wrapper d-flex">
   <div class="content flex-grow-1 p-4">
     <main>
       {{> search}}
-      {{#each results}}
-      {{>card this}}
-      {{/each}}
+
+      <div class="posts-container d-flex flex-wrap gap-3">
+        {{#each results}}
+        <div class="post-item text-white" style="width: 180px;">
+          <a href="/posts/{{this.post_id}}" class="post-link" style="text-decoration: none;">
+            <img src="/{{thumbnail}}" alt="{{this.title}}"
+              style="width: 100%; height: 100px; object-fit: cover; border-radius: 0.25rem;" />
+          </a>
+          <h5 class="post-title mt-2" style="font-size: 1rem;">
+            <a href="/posts/{{this.post_id}}" style="color: white; text-decoration: none;">
+              {{this.title}}
+            </a>
+          </h5>
+          <p class="post-author" style="font-size: 0.8rem; margin-bottom: 0;">by {{this.username}}</p>
+          <p class="post-date" style="font-size: 0.8rem; margin-top: 0;">{{formatDate this.created_at}}</p>
+        </div>
+        {{/each}}
+      </div>
     </main>
   </div>
 </div>

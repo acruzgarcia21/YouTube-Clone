@@ -6,12 +6,7 @@ const db = require('../config/database');
 const bcrypt = require('bcrypt');
 const { isLoggedIn, isMyProfile } = require('../middleware/auth.js');
 const { getPostByUserId } = require('../middleware/post.js');
-/**
- *  /users/register
- * 
- * if fails redirect to /register
- * if succeeds redirect to /login
- */
+
 router.post("/register",
   validateUsername,
   validatePassword,
@@ -111,7 +106,8 @@ router.get('/:id(\\d+)', isLoggedIn, isMyProfile, getPostByUserId, async functio
 
     res.render('profile', {
       title: `${user.username}'s Profile`,
-      user
+      user,
+      userPosts: res.locals.userPosts || []
     });
   } catch (err) {
     console.error("Failed to load profile:", err);
@@ -119,7 +115,5 @@ router.get('/:id(\\d+)', isLoggedIn, isMyProfile, getPostByUserId, async functio
     res.redirect('/');
   }
 });
-
-
 
 module.exports = router;

@@ -13,14 +13,16 @@
         <div class="post-author-date d-flex justify-content-between align-items-center">
           <div>
             <p class="author mb-0">{{post.username}}</p>
-            <p class="date-posted mb-0"><small>{{formatDate post.created_at}}</small></p>
           </div>
+
+
+
 
           <div class="d-flex align-items-center gap-3 mt-3">
             <button id="like-button" data-postid="{{post.post_id}}"
               class="btn btn-outline-light {{#if userLiked}}liked{{/if}}">
               <i class="bi bi-hand-thumbs-up{{#if userLiked}}-fill{{/if}}"></i>
-              <span id="like-count">{{likeCount}}</span> Like{{#if likeCount}}s{{/if}}
+              <span id="like-count">{{likeCount}}</span> {{#if likeCount}}s{{/if}}
             </button>
 
             <div>
@@ -28,6 +30,13 @@
             </div>
           </div>
 
+        </div>
+        <div class="description-box p-3 my-4 rounded">
+          <p class="date-posted mb-0"><small>{{formatDate post.created_at}}</small></p>
+
+          <p class="text-white">
+            {{post.description}}
+          </p>
         </div>
 
         <div class="comment-box mt-4">
