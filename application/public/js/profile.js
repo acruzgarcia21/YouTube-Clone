@@ -21,6 +21,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         if (response.ok) {
           alert(data.message);
+          // Reload the page so the deleted post disappears
           window.location.reload();
         } else {
           alert(data.error || 'Failed to delete post');

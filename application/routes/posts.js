@@ -67,25 +67,45 @@ router.get("/:id(\\d+)", getPostById, getCommentsByPostId, getLikesByPostId, fun
 });
 
 router.get("/search", async function (req, res, next) {
-  const { s } = req.query;
-  if (s == "") {
+  try {
+    const { s } = req.query;
 
+    if (!s || s.trim() === "") {
+      // If search is empty, just render with no results or maybe all posts
+      res.locals.results = [];
+      res.locals.resultsSize = 0;
+      res.locals.searchValue = "";
+      return res.render('index', { title: 'CSC 317 App', css: ['style.css'] });
+    }
+
+    const searchKey = `%${s}%`;
+
+    const [rows] = await db.query(`
+      SELECT post.post_id, post.title, post.thumbnail, post.created_at, user.username,
+             CONCAT_WS(' ', post.title, post.description) AS haystack
+      FROM post
+      JOIN user ON post.fk_user_id = user.user_id
+      WHERE CONCAT_WS(' ', post.title, post.description) LIKE ?
+      ORDER BY post.created_at DESC
+      LIMIT 50;
+    `, [searchKey]);
+
+    res.locals.results = rows;
+    res.locals.resultsSize = rows.length;
+    res.locals.searchValue = s;
+
+    return res.render('index', { title: 'CSC 317 App', css: ['style.css'] });
+  } catch (err) {
+    next(err);
   }
-  var searchKey = `%${s}%`;
-  var [rows, _] = await db.query(`select post_id, title, thumbnail, concat_ws(' ' , title, description) as haystack from post
-    having haystack like ?;`, [searchKey]);
-  if (rows && rows.length == 0) {
-    // no search result
-  }
-  res.locals.results = rows;
-  res.locals.resultsSize = rows.length;
-  res.locals.searchValue = s;
-  return res.render('index', { title: 'CSC 317 App', css: ['style.css'] })
 });
+
 
 router.delete('/:id(\\d+)', isLoggedIn, isPostOwner, async (req, res, next) => {
   try {
     const postId = Number(req.params.id);
+    await db.query('DELETE FROM likes WHERE fk_post_id = ?', [postId]);
+    await db.query('DELETE FROM comments WHERE fk_post_id = ?', [postId]);
     const [result] = await db.query('DELETE FROM post WHERE post_id = ?', [postId]);
 
     if (result.affectedRows === 0) {
