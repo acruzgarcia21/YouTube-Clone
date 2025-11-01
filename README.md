@@ -1,24 +1,35 @@
 # YouTube Clone
 
+A web application inspired by **YouTube**, built to practice front-end development and understand how web templating, routing, and dynamic rendering work using **Handlebars**.  
+This project also serves as a way to learn full-stack fundamentals — database integration, environment configuration, and frontend–backend communication.
+
+---
+
 ## Purpose
 
-The purpose of this repository is to store all the code for your web application. This also includes the history of all commits made and who made them.
+The purpose of this repository is to store all source code, assets, and configuration files for the YouTube Clone project.  
+It also maintains the full version history of all commits and development progress.
 
-# Build/Run Instructions
+This project focuses on **learning how the web application stack works** — from HTML templates rendered with Handlebars to database-driven data display — while strengthening my skills in **JavaScript**, **templating**, and **C#** integration with backend logic (if applicable to your stack).
 
-## Build Instructions
-1. npm install
-2. set up .env file
+---
 
-|       Variable        |      Value      |
-|:-------------:|:---------------------:|
-| DB_HOST  | hostname |
-| DB_USER    | user             |
-| DB_PASSWORD | password  |
-| DB_NAME | name  |
-| DB_PORT | port #  |
-| PORT | port #  |
-3. npm run builddb
+## Tech Stack
 
-## Run Instructions
-1. npm start
+| Layer | Technology |
+|--------|-------------|
+| Template Engine | Handlebars |
+| Frontend | HTML, CSS, JavaScript |
+| Database | MySQL (or your configured DB) |
+| Environment Management | `.env` file for database and port configuration |
+| Version Control | Git + GitHub |
+
+---
+
+## Build / Run Instructions
+
+### 🛠️ Build Instructions
+
+1. **Install dependencies**
+   ```bash
+   npm install
