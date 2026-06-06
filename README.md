@@ -20,7 +20,7 @@ This project focuses on **learning how the web application stack works** — fro
 |--------|-------------|
 | Template Engine | Handlebars |
 | Frontend | HTML, CSS, JavaScript |
-| Database | MySQL (or your configured DB) |
+| Database | MySQL |
 | Environment Management | `.env` file for database and port configuration |
 | Version Control | Git + GitHub |
 
